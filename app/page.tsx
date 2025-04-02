@@ -1,103 +1,206 @@
-import Image from "next/image";
+"use client"
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Activity, UserCircle, ListTodo, BarChart2, TrendingUp } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Navigation Bar */}
+      <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-sm">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Activity className="h-6 w-6 text-emerald-500" />
+            <span className="font-bold text-xl">GymFitness</span>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <nav className="hidden md:flex items-center space-x-4">
+            <Button variant="ghost" asChild>
+              <Link href="/add-exercise">
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Add Exercise
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link href="/exercises">
+                <ListTodo className="h-4 w-4 mr-2" />
+                All Exercises
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link href="/profile">
+                <UserCircle className="h-4 w-4 mr-2" />
+                My Profile
+              </Link>
+            </Button>
+          </nav>
+
+          <Button variant="outline" size="icon" className="md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          </Button>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Welcome back, Sakun!</h1>
+          <p className="text-gray-500 dark:text-gray-400">Here's your fitness summary for today.</p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* Daily Miles */}
+          <Card className="transition-all hover:shadow-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">Daily Miles</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">3.2</div>
+              <div className="mt-4 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-emerald-500 rounded-full" style={{ width: '64%' }}></div>
+              </div>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">64% of daily goal</p>
+            </CardContent>
+            <CardFooter className="pt-0 text-sm text-emerald-600">
+              +0.8 miles from yesterday
+            </CardFooter>
+          </Card>
+
+          {/* Monthly Miles */}
+          <Card className="transition-all hover:shadow-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Miles This Month</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">42.7</div>
+              <div className="mt-4 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-blue-500 rounded-full" style={{ width: '71%' }}></div>
+              </div>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">71% of monthly goal</p>
+            </CardContent>
+            <CardFooter className="pt-0 text-sm text-blue-600">
+              +12.2 miles from last month
+            </CardFooter>
+          </Card>
+
+          {/* Daily Push-ups */}
+          <Card className="transition-all hover:shadow-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">Daily Push-ups</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">30</div>
+              <div className="mt-4 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-purple-500 rounded-full" style={{ width: '60%' }}></div>
+              </div>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">60% of daily goal</p>
+            </CardContent>
+            <CardFooter className="pt-0 text-sm text-purple-600">
+              +5 push-ups from yesterday
+            </CardFooter>
+          </Card>
+
+          {/* Monthly Push-ups */}
+          <Card className="transition-all hover:shadow-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Push-ups This Month</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">450</div>
+              <div className="mt-4 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-orange-500 rounded-full" style={{ width: '75%' }}></div>
+              </div>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">75% of monthly goal</p>
+            </CardContent>
+            <CardFooter className="pt-0 text-sm text-orange-600">
+              +125 push-ups from last month
+            </CardFooter>
+          </Card>
+        </div>
+
+        {/* Recent Activities Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Recent Activities</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle>Weekly Progress</CardTitle>
+                <CardDescription>Your activity over the past 7 days</CardDescription>
+              </CardHeader>
+              <CardContent className="h-80 flex items-center justify-center">
+                <div className="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-center text-gray-400">
+                  <BarChart2 className="h-12 w-12 mb-2" />
+                  <span className="ml-2">Activity Chart</span>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Exercises</CardTitle>
+                <CardDescription>Your latest workout sessions</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  {[
+                    { name: "Morning Run", date: "Today", duration: "25 min", type: "Cardio" },
+                    { name: "Upper Body Workout", date: "Yesterday", duration: "45 min", type: "Strength" },
+                    { name: "Evening Walk", date: "2 days ago", duration: "30 min", type: "Cardio" },
+                  ].map((exercise, i) => (
+                    <li key={i} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
+                      <div>
+                        <p className="font-medium">{exercise.name}</p>
+                        <p className="text-sm text-gray-500">{exercise.date} · {exercise.duration}</p>
+                      </div>
+                      <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+                        {exercise.type}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button variant="ghost" className="w-full" asChild>
+                  <Link href="/exercises">View All Exercises</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="mt-12 pb-12">
+          <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            <Button size="lg" className="h-auto py-6" asChild>
+              <Link href="/add-exercise">
+                <div className="flex flex-col items-center">
+                  <TrendingUp className="h-6 w-6 mb-2" />
+                  <span>Add New Exercise</span>
+                </div>
+              </Link>
+            </Button>
+            <Button size="lg" className="h-auto py-6" variant="outline" asChild>
+              <Link href="/goals">
+                <div className="flex flex-col items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 mb-2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+                  <span>Set New Goals</span>
+                </div>
+              </Link>
+            </Button>
+            <Button size="lg" className="h-auto py-6" variant="outline" asChild>
+              <Link href="/reports">
+                <div className="flex flex-col items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 mb-2"><path d="M21 15V6"/><path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M12 3v12"/><path d="M9.5 6a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M3 3v18"/></svg>
+                  <span>View Reports</span>
+                </div>
+              </Link>
+            </Button>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
