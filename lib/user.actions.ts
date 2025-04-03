@@ -12,11 +12,12 @@ export interface User {
   $id: string;
   userId: string;
   email: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   profileImage?: string;
   membershipType?: string;
-  fitnessGoals?: string[];
+  fitnessGoals?: string;
+  personalGoals?: string[];
 }
 
 const DATABASE_ID = process.env.NEXT_PUBLIC_DATABASE_ID || '';
@@ -32,27 +33,7 @@ export const parseStringify = async (obj: any) => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-/**
- * Get user information by userId
- */
-export const getUserInfo = async ({ userId }: { userId: string }) => {
-  try {
-    const { database } = await createAdminClient();
 
-    const user = await database.listDocuments(
-      DATABASE_ID,
-      USERS_COLLECTION_ID,
-      [Query.equal('userId', [userId])]
-    );
-
-    if (!user.documents.length) return null;
-
-    return parseStringify(user.documents[0]);
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
 
 /**
  * Sign in a user with email and password
@@ -93,7 +74,8 @@ export const signUp = async ({
   firstName,
   lastName,
   fitnessGoals,
-  membershipType
+  membershipType,
+  personalGoals,
 }: { 
   email: string;
   password: string;
@@ -101,6 +83,7 @@ export const signUp = async ({
   lastName: string;
   fitnessGoals?: string;
   membershipType?: string;
+  personalGoals?: string[];
 }) => {
   try {
     const { account, database } = await createAdminClient();
@@ -123,11 +106,11 @@ export const signUp = async ({
       {
         userId: newUserAccount.$id,
         email:email,
-        firstname:firstName,
-        lastname:lastName,
+        firstName:firstName,
+        lastName:lastName,
         fitnessGoals: fitnessGoals || 'basic',
         membershipType: membershipType || 'free',
-        createdAt: new Date().toISOString(),
+        personalGoals: personalGoals || []
       }
     );
 
@@ -151,7 +134,7 @@ export const signUp = async ({
 /**
  * Get the currently logged in user
  */
-export async function getLoggedInUser() {
+export async function getLoggedInUser() : Promise<User | null> {
   try {
     const { account } = await createSessionClient();
     const result = await account.get();
@@ -164,6 +147,28 @@ export async function getLoggedInUser() {
     return null;
   }
 }
+
+/**
+ * Get user information by userId
+ */
+export const getUserInfo = async ({ userId }: { userId: string }) : Promise<User | null> => {
+  try {
+    const { database } = await createAdminClient();
+
+    const user = await database.listDocuments(
+      DATABASE_ID,
+      USERS_COLLECTION_ID,
+      [Query.equal('userId', [userId])]
+    );
+
+    if (!user.documents.length) return null;
+
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 /**
  * Log out the current user

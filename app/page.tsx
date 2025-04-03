@@ -4,8 +4,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Activity, UserCircle, ListTodo, BarChart2, TrendingUp } from "lucide-react"
+import { useUser } from "@/hooks/use-auth"
 
 export default function Home() {
+  const {user, isLoading} = useUser()
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Navigation Bar */}
@@ -46,7 +49,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Welcome back, Sakun!</h1>
+          <h1 className="text-3xl font-bold mb-2">Welcome back, {isLoading ? '..' : `${user?.firstName} ${user?.lastName}` }</h1>
           <p className="text-gray-500 dark:text-gray-400">Here's your fitness summary for today.</p>
         </div>
 

@@ -11,6 +11,7 @@ import { useUser } from "@/hooks/use-auth"
 export default function Profile() {
   const router = useRouter()
   const { user, isLoading, logout } = useUser()
+  console.log(user)
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -65,7 +66,7 @@ export default function Profile() {
             Back to Dashboard
           </Link>
         </Button>
-
+        
         <div className="max-w-3xl mx-auto">
           <Card>
             <CardHeader className="pb-2">
@@ -82,11 +83,11 @@ export default function Profile() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">First Name</p>
-                    <p className="font-semibold text-lg">{user?.firstname}</p>
+                    <p className="font-semibold text-lg">{user?.firstName}</p>
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Last Name</p>
-                    <p className="font-semibold text-lg">{user?.lastname}</p>
+                    <p className="font-semibold text-lg">{user?.lastName}</p>
                   </div>
                 </div>
                 
