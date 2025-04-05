@@ -17,7 +17,7 @@ export default function Profile() {
     if (!isLoading && !user) {
       router.push("/signin")
     }
-  }, [isLoading, user, router])
+  }, [isLoading, user])
 
   if (isLoading) {
     return (
