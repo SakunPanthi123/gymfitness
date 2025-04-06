@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Activity, UserCircle, LogOut, Mail, Edit, ChevronLeft } from "lucide-react"
-import { useUser } from "@/hooks/use-auth"
+import { useUser } from "@/hooks/useUser"
 
 export default function Profile() {
   const router = useRouter()
@@ -32,31 +32,6 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Navigation Bar */}
-      <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Activity className="h-6 w-6 text-emerald-500" />
-            <span className="font-bold text-xl">GymFitness</span>
-          </div>
-
-          <nav className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" asChild>
-              <Link href="/">Home</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/add-exercise">Add Exercise</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/exercises">All Exercises</Link>
-            </Button>
-          </nav>
-
-          <Button variant="outline" size="icon" className="md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-          </Button>
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">

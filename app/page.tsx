@@ -4,48 +4,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Activity, UserCircle, ListTodo, BarChart2, TrendingUp } from "lucide-react"
-import { useUser } from "@/hooks/use-auth"
+import { useUser } from "@/hooks/useUser"
 
 export default function Home() {
   const {user, isLoading} = useUser()
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Navigation Bar */}
-      <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Activity className="h-6 w-6 text-emerald-500" />
-            <span className="font-bold text-xl">GymFitness</span>
-          </div>
-
-          <nav className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" asChild>
-              <Link href="/add-exercise">
-                <TrendingUp className="h-4 w-4 mr-2" />
-                Add Exercise
-              </Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/exercises">
-                <ListTodo className="h-4 w-4 mr-2" />
-                All Exercises
-              </Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/profile">
-                <UserCircle className="h-4 w-4 mr-2" />
-                My Profile
-              </Link>
-            </Button>
-          </nav>
-
-          <Button variant="outline" size="icon" className="md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-          </Button>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
@@ -190,14 +155,6 @@ export default function Home() {
                 <div className="flex flex-col items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 mb-2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
                   <span>Set New Goals</span>
-                </div>
-              </Link>
-            </Button>
-            <Button size="lg" className="h-auto py-6" variant="outline" asChild>
-              <Link href="/reports">
-                <div className="flex flex-col items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 mb-2"><path d="M21 15V6"/><path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M12 3v12"/><path d="M9.5 6a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M3 3v18"/></svg>
-                  <span>View Reports</span>
                 </div>
               </Link>
             </Button>

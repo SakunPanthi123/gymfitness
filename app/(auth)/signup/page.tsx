@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { useUser } from "@/hooks/use-auth";
+import { useUser } from "@/hooks/useUser";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { 

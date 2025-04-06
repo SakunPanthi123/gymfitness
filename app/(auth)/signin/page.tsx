@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { useUser } from "@/hooks/use-auth";
+import { useUser } from "@/hooks/useUser";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),

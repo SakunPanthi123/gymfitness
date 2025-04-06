@@ -7,7 +7,7 @@ import {
   signUp, 
   logoutAccount, 
   updateUserProfile 
-} from "@/lib/user.actions";
+} from "@/lib/user-actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
