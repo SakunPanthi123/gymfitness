@@ -289,6 +289,52 @@ export function useWeeklyProgress(userId?: string) {
 }
 
 /**
+ * Main progress hook - combines all progress functionality
+ */
+export function useProgress(userId?: string) {
+  const progressEntries = useProgressEntries(userId);
+  const personalRecords = usePersonalRecords(userId);
+  const goals = useGoals(userId);
+  const achievements = useAchievements(userId);
+  const dashboardStats = useDashboardStats(userId);
+  const weeklyProgress = useWeeklyProgress(userId);
+  const tracking = useProgressTracking();
+
+  return {
+    // Progress entries
+    ...progressEntries,
+    
+    // Personal records
+    personalRecords: personalRecords.records,
+    isLoadingRecords: personalRecords.isLoading,
+    addRecord: personalRecords.addRecord,
+    
+    // Goals
+    goals: goals.goals,
+    isLoadingGoals: goals.isLoading,
+    createGoal: goals.createNewGoal,
+    updateGoal: goals.updateGoalData,
+    updateGoalProgress: goals.updateProgress,
+    
+    // Achievements
+    achievements: achievements.achievements,
+    isLoadingAchievements: achievements.isLoading,
+    shareAchievement: achievements.shareAchievement,
+    
+    // Dashboard stats
+    stats: dashboardStats.stats,
+    isLoadingStats: dashboardStats.isLoading,
+    
+    // Weekly progress
+    weeklyProgress: weeklyProgress.weeklyProgress,
+    isLoadingWeekly: weeklyProgress.isLoading,
+    
+    // Tracking utilities
+    ...tracking,
+  };
+}
+
+/**
  * Hook for progress tracking utilities
  */
 export function useProgressTracking() {
